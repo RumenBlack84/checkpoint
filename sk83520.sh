@@ -3,7 +3,7 @@
 # In order to better maintain and implement
 # sk83520 connectivity check
 # Initial URL https://community.checkpoint.com/t5/Security-Gateways/sk83520-how-to-check-connectivity-to-CP/m-p/31874/highlight/true#M2558
-# Run on the gw/mgmt curl_cli -k  https://raw.githubusercontent.com/billygr/CheckPoint/master/sk83520.sh > sk83520.sh
+# Run on the gw/mgmt curl_cli -k  https://raw.githubusercontent.com/RumenBlack84/checkpoint/refs/heads/main/sk83520.sh > sk83520.sh
 # chmod +x sk83520.sh
 # ./sk83520.sh
 
