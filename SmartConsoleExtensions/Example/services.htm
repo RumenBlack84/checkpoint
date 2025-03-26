@@ -277,6 +277,9 @@ d2l-empty-state-simple {
     fill: var(--darkreader-neutral-background) !important;
 }</style></head>
 
+	<!-- It looks like I can encode whatever script I want to run as a base64 as seen below and run it. -->
+	<!-- Alternatively I could a seperate process to distribute the scripts to the systems and run them however I think base64 is base for the extension -->
+	<!-- However script repository in SmartConsole Makes a lot of sense too. -->
   <body>
 	<pre id="text"><button id="Button" type="button" onclick="smxProxy.sendRequest(&#39;get-context&#39;, null, &#39;onContext&#39;);" style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); background-color: rgb(76, 175, 80); border: none; color: white; padding: 1em 2em; text-align: center; text-decoration: none; display: inline-block; font-size: 1em; margin: 0.4em 0.2em; cursor: pointer; --darkreader-inline-bgcolor: var(--darkreader-background-4caf50, #3d8c40); --darkreader-inline-border-top: none; --darkreader-inline-border-right: none; --darkreader-inline-border-bottom: none; --darkreader-inline-border-left: none; --darkreader-inline-color: var(--darkreader-text-ffffff, #e8e6e3);" data-darkreader-inline-bgcolor="" data-darkreader-inline-border-top="" data-darkreader-inline-border-right="" data-darkreader-inline-border-bottom="" data-darkreader-inline-border-left="" data-darkreader-inline-color="">Services Check</button></pre>
 	<script>
