@@ -53,7 +53,7 @@ check_url 'https://crl.godaddy.com/gdroot-g2.crl' 'CRL check godaddy Update Serv
 
 check_url 'http://crl.globalsign.net/root-r2.crl' 'CRL check globalsign CRL that updates service certificate uses'
 
-check_url 'http://dl3.checkpoint.com/paid/90/902caf44a13d71e91a35315e4a28caa8/CheckPoint_Stencils_for_Visio.zip?HashKey=1480871979_bb9dd6cf9a98c6bf41f3cd1fd147c855&xtn=.zip' 'Download Service Updates'
+check_url 'http://dl3.checkpoint.com' 'Download Service Updates'
 
 check_url 'https://usercenter.checkpoint.com/usercenter/services/ProductCoverageService' 'Contract Entitlement'
 
@@ -69,17 +69,11 @@ check_url 'http://teadv.checkpoint.com/' 'Threat Emulation Advanced'
 check_url 'https://ptcs.checkpoint.com' 'PTC Updates'
 check_url 'https://ptcd.checkpoint.com' 'PTC Updates'
 
-check_url 'http://kav8.zonealarm.com/version.txt' 'Anti-Virus Deep inspection in R77.10 and higher'
-
-check_url 'http://kav8.checkpoint.com/version.txt' 'Traditional Anti-Virus'
-
 check_url 'http://avupdates.checkpoint.com/UrlList.txt' 'Traditional Anti-Virus, Legacy URL Filtering'
 
 check_url 'http://sigcheck.checkpoint.com/Siglist2.txt' 'Download of signature updates for Traditional Anti-Virus, etc'
 
 check_url 'http://secureupdates.checkpoint.com' 'Manage Security Gateways'
-
-check_url 'https://productcoverage.checkpoint.com/ProductCoverageService' 'Makes sure the machines contracts are up-to-date'
 
 check_url 'https://sc1.checkpoint.com/sc/images/checkmark.gif' 'Download of icons and screenshots from Check Point media storage servers'
 check_url 'https://sc1.checkpoint.com/za/images/facetime/large_png/60342479_lrg.png' 'Download of icons and screenshots from Check Point media storage servers'
