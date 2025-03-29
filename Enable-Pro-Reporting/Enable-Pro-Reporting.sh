@@ -37,10 +37,18 @@ echo "##############################################"
 echo "Enabling Pro Reporting on active SMS"
 echo "##############################################" 
 mgmt_cli -r true set global-properties data-access-control.auto-download-important-data true data-access-control.auto-download-sw-updates-and-new-features true data-access-control.send-anonymous-info true data-access-control.share-sensitive-info true
+# Let's get all the install database targets
+readarray -t TARGETS < <(
+  mgmt_cli -r true show gateways-and-servers limit 500 --format json | \
+  jq -r '.objects[] | select(.type == "checkpoint-host") | .name'
+)
+# Install database to the targets fetched above
+for target in "${TARGETS[@]}"; do
+"mgmt_cli -r true install-database $target"
+done
+fi
 
-
-# Array to put domains to start -m starts global
-
+if [ ${is_mds} = 1 ]; then
 # Initialize an empty array
 ALL_DOMAINS=()
 
@@ -58,4 +66,16 @@ for entry in "${ALL_DOMAINS[@]}"; do
     echo "Enabling Pro Reporting on $DOMAIN_NAME domain"
     echo "##############################################" 
     mgmt_cli -r true -d "$DOMAIN_NAME" set global-properties data-access-control.auto-download-important-data true data-access-control.auto-download-sw-updates-and-new-features true data-access-control.send-anonymous-info true data-access-control.share-sensitive-info true
+    readarray -t TARGETS < <(
+    mgmt_cli -r true -d "$DOMAIN_NAME" show gateways-and-servers limit 500 --format json | \
+    jq -r '.objects[] | select(.type == "checkpoint-host") | .name'
+    )
+    # Install database to the targets fetched above
+    for target in "${TARGETS[@]}"; do
+    "mgmt_cli -r true -d "$DOMAIN_NAME" install-database $target"
+    done
 done
+echo "##############################################" 
+echo "Ensure you run this script on your other MDS too!"
+echo "##############################################" 
+fi
