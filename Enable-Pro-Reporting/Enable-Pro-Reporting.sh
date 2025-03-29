@@ -44,7 +44,7 @@ readarray -t TARGETS < <(
 )
 # Install database to the targets fetched above
 for target in "${TARGETS[@]}"; do
-"mgmt_cli -r true install-database targets.1 $target"
+mgmt_cli -r true install-database targets.1 "$target"
 done
 fi
 
