@@ -44,7 +44,7 @@ readarray -t TARGETS < <(
 )
 # Install database to the targets fetched above
 for target in "${TARGETS[@]}"; do
-"mgmt_cli -r true install-database $target"
+"mgmt_cli -r true install-database targets.1 $target"
 done
 fi
 
@@ -72,7 +72,7 @@ for entry in "${ALL_DOMAINS[@]}"; do
     )
     # Install database to the targets fetched above
     for target in "${TARGETS[@]}"; do
-    "mgmt_cli -r true -d "$DOMAIN_NAME" install-database $target"
+    "mgmt_cli -r true -d "$DOMAIN_NAME" install-database targets.1 $target"
     done
 done
 echo "##############################################" 
