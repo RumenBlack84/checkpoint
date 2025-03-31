@@ -3,9 +3,8 @@ This script is meant to help automate the process of enabling the required infor
 For a single Management server this process is quite easy and straight forward. However if you need to enable it an MDS environment with many domains it can be a daunting task.
 If running in an MDS environment ensure you run the script on all MDS Servers to ensure all active CMAs have the required telemetry set.
 
-The script on should be run on every MDS Server or Active SMS in the environment by copying this command block into an expert mode command line on each system.
-
 # Running the script
+The script on should be run on every MDS Server or Active SMS in the environment by copying this command block into an expert mode command line on each system.
 ```bash
 # Ensure the tmp dir exists \
 mkdir -p /var/log/tmp/ ; \
