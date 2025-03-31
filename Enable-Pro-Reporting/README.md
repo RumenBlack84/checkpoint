@@ -5,7 +5,7 @@ If running in an MDS environment ensure you run the script on all MDS Servers to
 
 The script on should be run on every MDS Server or Active SMS in the environment by copying this command block into an expert mode command line on each system.
 
-# Runing the script
+# Running the script
 ```bash
 # Ensure the tmp dir exists \
 mkdir -p /var/log/tmp/ ; \
