@@ -1,14 +1,20 @@
 #!/bin/bash
-# not yet finished more documentation and logic required
+# This will enable the required telemetry to Checkpoint to enable pro reporting.
+# More information is available in this SK https://support.checkpoint.com/results/sk/sk155212
+# Ensure you add a user with Pro Contact Permissions to your usercenter to recieve information
+# This person will also be in the contact list for any Service requests created from the telemtry
 
-# Need to install-database to script as well.
-# However I first need to fetch a list of targets the below should create an array of mgmt servers, log servers etc.
-# for mds this should be filtered down by domain by adding -d to mgmt_cli call.
-# readarray -t TARGETS < <(
-#  mgmt_cli -r true show gateways-and-servers limit 500 --format json | \
-#  jq -r '.objects[] | select(.type == "checkpoint-host") | .name'
-#)
+# Sign in to User Center.
+# From the top, click Support / Services.
+# In the left section Support Center, click Check Point PRO Report.
+# In the applicable account, on the right side, click Manage Contacts.
+# Select the applicable person and click Add PRO Contact Permission.
+# Close the Account PRO Contacts popup window.
 
+# Please note this is still useful to do even if you do not subscribe to to Pro Reports
+# This information is available to Technical Servers when working on cases.
+# An internal link will be provided in the documentation of this script where TAC
+# can view the telemetry and any reported errors.
 
 is_mgmt=`cpprod_util FwIsFirewallMgmt`
 if [ ${is_mgmt} = 0 ]; then
@@ -79,3 +85,10 @@ echo "##############################################"
 echo "Ensure you run this script on your other MDS too!"
 echo "##############################################" 
 fi
+
+echo "##############################################" 
+echo "Now that you are sending Checkpoint the Telemetry,"
+echo "ensure that you set a Pro Contact for your account"
+echo "as per sk155212 to be notified based on this info."
+echo "##############################################" 
+
