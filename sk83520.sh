@@ -14,30 +14,18 @@ check_url () {
   name="$2 "
   while [ ${#name} -lt 74 ]; do name="$name."; done
   echo -en "$name "
-  response=$(curl_cli -k -LisI $1 | grep "HTTP/1.1" | awk 'END { print }')
-  status=$(echo "${response}" | awk 'END { print $2 " " $3 " " $4}')
-  status_code=$(echo ${response} | awk '{ print $2 }')
-  if [ "${status_code}" != "200" ]; then
-    echo "${result} - Got HTTP ${status_code}"
-    else result=" [ OK ]"
-    echo "${result}"
-  fi
+  status_code=$(curl_cli -k --head $1 2>/dev/null | grep HTTP | awk '{print $2}')
+  case "$status_code" in
+  1??|2??|3??)
+    result="[ OK ]"
+    ;;
+  *)
+    result="[ FAIL ] - Got HTTP ${status_code}"
+    ;;
+esac
+echo "${result}"
 }
 
-check_url_without_head () {
-  result=" [ ERROR ]"
-  name="$2 "
-  while [ ${#name} -lt 74 ]; do name="$name."; done
-  echo -en "$name "
-  response=$(curl_cli -k --location --include --silent $1 | grep "HTTP/1.1" | awk 'END { print }')
-  status=$(echo "${response}" | awk 'END { print $2 " " $3 " " $4}')
-  status_code=$(echo ${response} | awk '{ print $2 }')
-  if [ "${status_code}" != "200" ]; then
-    echo "${result} - Got HTTP ${status_code}"
-    else result=" [ OK ]"
-    echo "${result}"
-  fi
-}
 echo
 echo "sk83520 How to verify that Security Gateway and/or Security Management Server can access Check Point servers"
 echo
@@ -59,9 +47,9 @@ check_url 'https://usercenter.checkpoint.com/usercenter/services/ProductCoverage
 
 check_url 'https://usercenter.checkpoint.com/usercenter/services/BladesManagerService' 'Software Blades Manager Service'
 
-check_url_without_head 'http://resolver1.chkp.ctmail.com' 'Suspicious Mail Outbreaks'
+check_url 'http://resolver1.chkp.ctmail.com' 'Suspicious Mail Outbreaks'
 
-check_url_without_head 'http://download.ctmail.com' 'Anti-Spam'
+check_url 'http://download.ctmail.com' 'Anti-Spam'
 
 check_url 'https://te.checkpoint.com/tecloud/Ping' 'Threat Emulation'
 
@@ -79,7 +67,7 @@ check_url 'https://sc1.checkpoint.com/sc/images/checkmark.gif' 'Download of icon
 check_url 'https://sc1.checkpoint.com/za/images/facetime/large_png/60342479_lrg.png' 'Download of icons and screenshots from Check Point media storage servers'
 check_url 'https://sc1.checkpoint.com/za/images/facetime/large_png/60096017_lrg.png' 'Download of icons and screenshots from Check Point media storage servers'
 
-check_url_without_head 'https://push.checkpoint.com/push/ping' 'Push Notifications'
+check_url 'https://push.checkpoint.com/push/ping' 'Push Notifications'
 
 check_url 'http://downloads.checkpoint.com' 'Download of Endpoint Compliance Updates'
 
