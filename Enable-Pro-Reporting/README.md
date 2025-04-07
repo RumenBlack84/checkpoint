@@ -1,10 +1,13 @@
 # Enabling Pro Reporting as per sk155212
+
 This script is meant to help automate the process of enabling the required information to be sent to checkpoint to enable pro reporting.
 For a single Management server this process is quite easy and straight forward. However if you need to enable it an MDS environment with many domains it can be a daunting task.
 If running in an MDS environment ensure you run the script on all MDS Servers to ensure all active CMAs have the required telemetry set.
 
-# Running the script
+## Running the script
+
 The script on should be run on every MDS Server or Active SMS in the environment by copying this command block into an expert mode command line on each system.
+
 ```bash
 # Ensure the tmp dir exists \
 mkdir -p /var/log/tmp/ ; \
@@ -19,7 +22,9 @@ dos2unix /var/log/tmp/Enable-Pro-Reporting.sh ; \
 # Cleanup the script once we are done \
 rm -v /var/log/tmp/Enable-Pro-Reporting.sh ;
 ```
-# The Script will take the following actions;
+
+## The Script will take the following actions
+
 - It will first ensure the system is a Management server of some type, if it is not the script will exit.
 - It will then determine if the Management server is currently the active management server so that it can make changes. If it is not the script will exit.
 - If the script is an active management server the script will enable the required telemetry and then install database to all management and log servers in the environment.
