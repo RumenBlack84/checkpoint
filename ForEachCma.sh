@@ -1,4 +1,4 @@
-my_function() {
+ForEachCma() {
   # Pulling in cp profile and ignore cpdir errors in lint as its not in the repo but will be on any checkpoint system
   # shellcheck source=/dev/null
   source "$CPDIR/tmp/.CPprofile.sh"
