@@ -1,0 +1,40 @@
+{
+  "extension": {
+    "name": "Services Check",
+    "version": "0.1",
+    "description": "A SmartConsole Extension to verify if Check Point Internet Services can be accessed",
+    "author": "Brian Grant",
+    "email": "brian@grant.onl",
+    "product-url": "https://github.com/RumenBlack84/checkpoint/tree/main/SmartConsoleExtensions",
+    "provider": "github.com",
+    "license": "GPLv3",
+    "extension-version-requirements": {
+      "minimum-version": "1.2"
+    }
+  },
+  "locations": [
+    {
+      "location": "details-pane",
+      "relevant-types": [
+        "gateways"
+      ],
+      "ui-element": {
+        "type": "tab",
+        "caption": "Services Check",
+        "tooltip": "Verify Internet Services on Check Point systems",
+        "action": {
+          "details-level": "full",
+          "method": "get",
+          "trigger-id": "gateways-details-pane",
+          "url": "services.htm"
+        }
+      }
+    }
+  ],
+  "requested-permissions": {
+    "client": [
+      "get-read-only-session",
+      "run-read-only-commands"
+    ]
+  }
+}
