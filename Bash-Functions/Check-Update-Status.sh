@@ -12,8 +12,14 @@ Check-Update-Status() {
   local ProxyUrl="$1"
 
   if [[ -z "$ProxyUrl" ]]; then
+    echo "##############################################################################################################"
+    echo "                          No ProxyUrl provided, continuing without setting a proxy."
+    echo "##############################################################################################################"
     status_code=$(curl_cli -k --head "$1" 2>/dev/null | grep HTTP | awk '{print $2}')
   else
+    echo "##############################################################################################################"
+    echo "             ProxyUrl Provded: $ProxyUrl setting this to use for connectivty checks."
+    echo "##############################################################################################################"
     status_code=$(curl_cli -k --proxy "$ProxyUrl" --head "$1" 2>/dev/null | grep HTTP | awk '{print $2}')
   fi
 
