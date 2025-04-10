@@ -15,12 +15,15 @@ Check-Update-Status() {
     echo "##############################################################################################################"
     echo "                          No ProxyUrl provided, continuing without setting a proxy."
     echo "##############################################################################################################"
-    status_code=$(curl_cli -k --head "$1" 2>/dev/null | grep HTTP | awk '{print $2}')
+    # The desire here is to have this as a literal string to use later so disabling sc2016 for these lines
+    # shellcheck disable=SC2016
+    status_cmd='curl_cli -k --head "$1" 2>/dev/null | grep HTTP | awk '"'"'{print $2}'"'"''
   else
     echo "##############################################################################################################"
     echo "             ProxyUrl Provded: $ProxyUrl setting this to use for connectivty checks."
     echo "##############################################################################################################"
-    status_code=$(curl_cli -k --proxy "$ProxyUrl" --head "$1" 2>/dev/null | grep HTTP | awk '{print $2}')
+    # shellcheck disable=SC2016
+    status_cmd='curl_cli -k --proxy "$ProxyUrl" --head "$1" 2>/dev/null | grep HTTP | awk '"'"'{print $2}'"'"''
   fi
 
   check_url() {
@@ -28,6 +31,7 @@ Check-Update-Status() {
     name="$2 "
     while [ ${#name} -lt 74 ]; do name="$name."; done
     echo -en "$name "
+    status_code=$(eval "$status_cmd")
     case "$status_code" in
     # Basically if it connects in anyway I'm happy, a lot of these require api calls and
     # formatting to get proper 200 codes
