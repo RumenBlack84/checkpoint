@@ -17,13 +17,13 @@ Check-Update-Status() {
     echo "##############################################################################################################"
     # The desire here is to have this as a literal string to use later so disabling sc2016 for these lines
     # shellcheck disable=SC2016
-    status_cmd='curl_cli -k --head "$1" 2>/dev/null | grep HTTP | awk '"'"'{print $2}'"'"''
+    status_cmd='curl_cli --connect-timeout 5 -k --head "$1" 2>/dev/null | grep HTTP | awk '"'"'{print $2}'"'"''
   else
     echo "##############################################################################################################"
     echo "             ProxyUrl Provded: $ProxyUrl setting this to use for connectivty checks."
     echo "##############################################################################################################"
     # shellcheck disable=SC2016
-    status_cmd='curl_cli -k --proxy "$ProxyUrl" --head "$1" 2>/dev/null | grep HTTP | awk '"'"'{print $2}'"'"''
+    status_cmd='curl_cli --connect-timeout 5 -k --proxy "$ProxyUrl" --head "$1" 2>/dev/null | grep HTTP | awk '"'"'{print $2}'"'"''
   fi
 
   check_url() {
