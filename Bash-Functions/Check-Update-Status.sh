@@ -28,7 +28,6 @@ Check-Update-Status() {
     name="$2 "
     while [ ${#name} -lt 74 ]; do name="$name."; done
     echo -en "$name "
-    status_code=$(curl_cli -k --head "$1" 2>/dev/null | grep HTTP | awk '{print $2}')
     case "$status_code" in
     # Basically if it connects in anyway I'm happy, a lot of these require api calls and
     # formatting to get proper 200 codes
