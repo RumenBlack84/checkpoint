@@ -11,7 +11,7 @@ still be found there with this procedure implemented if there is enough space.
 
 ## Instructions
 
-## Prepare the USB drive
+### Prepare the USB drive
 
 The USB storage drive should be ideally the same size or greater than
 the total ram on the system. We will be using gzip to compress the vmcore,
@@ -62,6 +62,8 @@ mkfs.ext4 /dev/sdz1
 ```
 <!-- markdownlint-enable MD013 -->
 
+### Configure the system to copy the core to usb
+
 Gather the UUID of the new partitions
 <!-- markdownlint-disable MD013 -->
 ```bash
@@ -91,13 +93,21 @@ dos2unix /var/log/scripts/kdump-post.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
-Finally we need to edit the /etc/kdump.conf file to ensure it has these
+We need to edit the /etc/kdump.conf file to ensure it has these
 UNCOMMENTED line in it.
 <!-- markdownlint-disable MD013 -->
 ```bash
 kdump_post /var/log/crash/scripts/kdump-post.sh
 ```
 <!-- markdownlint-enable MD013 -->
+
+### Verifying it's working properly
+
+When the kdump process is invoked the initram environment will
+call the kdump-post.sh script after it's finished it's tasks.
+This will mount our storage device and copy and compress the file from memory
+(/proc/vmcore) to our USB drive.
+
 Finally we can test to make sure everything's working by
 manually crashing the kernel with the following command.
 Please take sane precautions like doing this on the standby
